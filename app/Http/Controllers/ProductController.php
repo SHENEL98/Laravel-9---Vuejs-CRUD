@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all(['id','title','description']);
-        return response()->json($categories);
+        $products = Product::all(['id','title','description']);
+        return response()->json($products);
     }
 
     /**
@@ -36,31 +36,31 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create($request->post());
+        $product = Product::create($request->post());
         return response()->json([
-            'message' => 'Category Created Successfully!!!',
-            'category' => $category
+            'message' => 'Product Created Successfully!!!',
+            'product' => $product
         ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Product $product)
     {
-        return response()->json($category);
+        return response()->json($product);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Product $product)
     {
         //
     }
@@ -69,30 +69,30 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Product $product)
     {
-        $category->fill($request->post())->save();
+        $product->fill($request->post())->save();
 
         return response()->json([
-            'message' => 'Category Updated Successfully!!!',
-            'category' => $category
+            'message' => 'Product Updated Successfully!!!',
+            'product' => $product
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Product $product)
     {
-        $category->delete();
+        $product->delete();
         return response()->json([
-            'message' => 'Category Deleted Successfully!!!'
+            'message' => 'Product Deleted Successfully!!!'
         ]);
     }
 }
